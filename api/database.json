@@ -1,5 +1,33 @@
 {
-    "clowns": [],
-    "requests": [],
-    "completions": []
+  "clowns": [
+    {
+      "id": 1,
+      "name": "Buttons"
+    },
+    {
+      "id": 2,
+      "name": "Lollipop"
+    }
+  ],
+  "reservations": [
+    {
+      "id": 1,
+      "parentName": "John Doe",
+      "childName": "Bob Doe",
+      "guests": "20",
+      "address": "124 Main St.",
+      "date": "2022-10-4",
+      "length": "2"
+    },
+    {
+      "parentName": "Jane Smith",
+      "childName": "Susan Smith",
+      "guests": "10",
+      "address": "404 Oh No Way",
+      "date": "2022-10-15",
+      "length": "3",
+      "id": 2
+    }
+  ],
+  "completions": []
 }

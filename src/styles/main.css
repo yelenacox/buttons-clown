@@ -1,0 +1,12 @@
+@import "details.css";
+
+body,
+button,
+input,
+select,
+textarea {
+	color: #404040;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+}
