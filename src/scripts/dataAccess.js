@@ -1,5 +1,5 @@
 const applicationState = {
-    requests: []
+    requests: [],
 }
 
 const API = "http://localhost:8088"
@@ -24,6 +24,17 @@ export const fetchClowns = () => {
                 applicationState.clowns = fetchedClowns
             }
         )
+}
+
+
+export const fetchCompletions = () => {
+    return fetch(`${API}/completions`)
+    .then(response => response.json())
+    .then(
+        (completedRequests) => {
+            applicationState.completions = completedRequests
+        }
+    )
 }
 
 
@@ -52,6 +63,10 @@ export const getClowns = () => {
     return applicationState.clowns.map(clown => ({ ...clown }))
 }
 
+export const getCompletions = () => {
+    return applicationState.completions.map(completion => ({ ...completion }))
+}
+
 export const deleteReservation = (id) => {
     return fetch(`${API}/reservations/${id}`, { method: "DELETE" })
         .then(
@@ -60,4 +75,19 @@ export const deleteReservation = (id) => {
                     ("stateChanged"))
             }
         )
+}
+
+export const saveCompletion = (completion) => {
+    const fetchCompletions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(completion)
+    }
+    return fetch(`${API}/completions`, fetchCompletions)
+    .then(response => response.json())
+    .then(() => {
+        mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+    })
 }

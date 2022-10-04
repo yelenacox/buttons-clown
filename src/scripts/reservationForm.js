@@ -55,7 +55,7 @@ export const reservationForm = () => {
         <input type="number" name="hourLength" class="input" />
     </div>
 
-    <button class="button" id="submitRequest">Submit Request</button>
+    <button class="button" id="submitReservation">Submit Request</button>
     `
     return html
 }
