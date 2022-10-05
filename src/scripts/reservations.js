@@ -4,43 +4,43 @@ const mainContainer = document.querySelector("#container")
 
 const isCompleted = (reservation) => {
     const completions = getCompletions()
-    let question = true
     //the function will be placed inside the requests.map, so it takes request as a parameter (no need to iterate through requests array because the map function will be doing that)
     for (const completion of completions) {
         //function iterates through completions array
         if (reservation.id === completion.reservationId) {
             //if request.id exists in competion.requestId, return false
-            question = false
-        }    
-    } return question
+            return false
+        }
+    } return true
     //otherwise, return true
 }
-
 
 export const Reservations = () => {
     const reservations = getReservations()
     const clowns = getClowns()
 
-    let html = `
+    const chronological = (a, b) => (a < b) ? -1 : 1
+       
+        let html = `
     <ul>
     ${reservations.map(reservation => isCompleted(reservation) ?
-        `<li>Request by ${reservation.parentName} for ${reservation.childName} for a party of ${reservation.guests}, for ${reservation.length} hours on ${reservation.date}
+            `<li>Request by ${reservation.parentName} for ${reservation.childName} for a party of ${reservation.guests}, for ${reservation.length} hours on ${reservation.date}
 
         <select class="clowns" id="clowns">
     <option value="">Choose</option>
     ${clowns.map(
-            clown => {
-                return `<option value="${reservation.id}--${clown.id}">${clown.name}</option>`
+                clown => {
+                    return `<option value="${reservation.id}--${clown.id}">${clown.name}</option>`
+                }
+            ).join("")
             }
-        ).join("")
-        }
 </select>
         
         <button id="reservation--${reservation.id}">
         Deny
         </button>
         </li> `
-        : "").join("")}
+            : "").sort((a, b) => chronological(a, b)).join("")}
         </ul>
         `
 
